@@ -1,0 +1,28 @@
+RewriteEngine On
+
+# Redirect Trailing Slashes If Not A Folder...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
+
+# Handle Front Controller...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+
+# Optional: Block access to sensitive directories/files
+# RewriteRule ^(app|config|vendor)/ - [F,L]
+# RewriteRule ^\.env - [F,L]
+# RewriteRule ^composer\.json - [F,L]
+# RewriteRule ^composer\.lock - [F,L]
+
+# Optional: Improve security headers (Uncomment and adjust as needed)
+# <IfModule mod_headers.c>
+#    Header set X-Content-Type-Options "nosniff"
+#    Header set X-Frame-Options "SAMEORIGIN"
+#    Header set Referrer-Policy "strict-origin-when-cross-origin"
+#    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+#    Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; img-src 'self' data: https://via.placeholder.com https://img.vietqr.io; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self';"
+# </IfModule>
+```
+*(Remember to enable `mod_rewrite` on your Apache server)*
